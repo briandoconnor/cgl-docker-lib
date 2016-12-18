@@ -40,7 +40,7 @@ dct:creator:
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/briandoconnor/rnaseq-cgl-pipeline:2.0.10-3"
+    dockerPull: "quay.io/briandoconnor/rnaseq-cgl-pipeline:2.0.10-4"
  
 hints:
   - class: ResourceRequirement
@@ -125,6 +125,22 @@ outputs:
       glob: '*.tar.gz'
     doc: "Result files RNA-seq CGL pipeline"
 
-baseCommand: ["python","/opt/rnaseq-pipeline/wrapper.py"]
+  wiggle_files:
+    type:
+      type: array
+      items: File
+    outputBinding:
+      glob: '*.wiggle.bg'
+    doc: "Wiggle result files RNA-seq CGL pipeline"
 
+  bam_files:
+    type:
+      type: array
+      items: File
+    outputBinding:
+      glob: '*.bam'
+    doc: "BAM result files RNA-seq CGL pipeline"
+
+
+baseCommand: ["python","/opt/rnaseq-pipeline/wrapper.py"]
 
